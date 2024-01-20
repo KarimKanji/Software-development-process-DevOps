@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+  <form>
+    <label>Enter weight:</label>
+    <input type="number" id="weightInput">
+    <br>
+    <label>Input unit:</label>
+    <select id="inputUnit">
+      <option value="kg">kg</option>
+      <option value="g">g</option>
+      <option value="mg">mg</option>
+      <option value="ug">ug</option>
+      <option value="ng">ng</option>
+    </select>
+    <br>
+    <label>Result unit:</label>
+    <select id="resultUnit">
+      <option value="kg">kg</option>
+      <option value="g">g</option>
+      <option value="mg">mg</option>
+      <option value="ug">ug</option>
+      <option value="ng">ng</option>
+    </select>
+    <br>
+    <button type="button" onclick="convertWeight()">Convert</button>
+    <p>Result: <span id="result"></span></p>
+  </form>
+      
+      <script>
+      function convertWeight() {
+  const weightInput = document.getElementById("weightInput").value;
+  const inputUnit = document.getElementById("inputUnit").value;
+  const resultUnit = document.getElementById("resultUnit").value;
+  let result;
+
+  // convert the input weight to milligrams
+  switch (inputUnit) {
+    case "kg":
+      result = weightInput * 1000000;
+      break;
+    case "g":
+      result = weightInput * 1000;
+      break;
+    case "mg":
+      result = weightInput;
+      break;
+    case "ug":
+      result = weightInput / 1000;
+      break;
+    case "ng":
+      result = weightInput / 1000000;
+      break;
+  }
+  
+  // convert the milligrams to the desired result unit
+  switch (resultUnit) {
+    case "kg":
+      result = result / 1000000;
+      break;
+    case "g":
+      result = result / 1000;
+      break;
+    case "mg":
+      // no conversion needed
+      break;
+    case "ug":
+      result = result * 1000;
+      break;
+    case "ng":
+      result = result * 1000000;
+      break;
+  }
+
+  document.getElementById("result").innerHTML = result + " " + resultUnit;
+}
+      </script>
+</body>
+</html>
